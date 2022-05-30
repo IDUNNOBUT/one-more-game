@@ -7,7 +7,7 @@ import {Result} from 'result.class';
 })
 export class RawgService {
   RAWG_URL = 'https://api.rawg.io/api/'
-  COMPRESS_URL = 'https://api.resmush.it/ws.php'
+  COMPRESS_URL = 'http://api.resmush.it/ws.php'
   YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3/search'
   key = 'fadcc54359414e4ea1f38bc8296f76bf'
   y_key = ''
