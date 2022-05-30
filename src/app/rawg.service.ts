@@ -7,10 +7,9 @@ import {Result} from 'result.class';
 })
 export class RawgService {
   RAWG_URL = 'https://api.rawg.io/api/'
-  COMPRESS_URL = 'http://api.resmush.it/ws.php'
   YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3/search'
   key = 'fadcc54359414e4ea1f38bc8296f76bf'
-  y_key = ''
+  y_key = 'AIzaSyDkmsSpGdp5AH0rpKR_K9BRPH8-3y8qgjY'
 
   constructor(private http: HttpClient) {
   }
@@ -25,11 +24,6 @@ export class RawgService {
   GetGameList(orderBy: string, page = 1): Promise<Object | undefined> {
     const param = new HttpParams().append('key', this.key).append('ordering', '-' + orderBy).append('page_size', 24).append('page', page);
     return this.http.get(`${this.RAWG_URL}games`, {params: param}).toPromise();
-  }
-
-  CompressImg(url: string, quality: number): Promise<Object | undefined> {
-    const param = new HttpParams().append('img', url).append('qlty', quality);
-    return this.http.get(`${this.COMPRESS_URL}`, {params: param}).toPromise();
   }
 
   GetGameDesc(id: number) {

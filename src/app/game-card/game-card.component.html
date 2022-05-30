@@ -16,7 +16,7 @@
   </div>
   <div class="preview">
     <div *ngIf="isLoading" class="placeholder"></div>
-    <img width="300px" #img (load)="Loading(img)" src="{{compressUrl}}" (error)="isLoading=true" alt="">
+    <img width="300px" #img (load)="Loading(img)" src="{{game.background_image}}" (error)="isLoading=true" alt="">
   </div>
 </div>
 

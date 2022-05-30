@@ -10,20 +10,12 @@ import {RawgService} from "../rawg.service";
 export class GameCardComponent implements OnInit, OnDestroy {
   @Input()
   game!: Result;
-  compressUrl = ''
   isLoading = true;
 
   constructor(private rawgService: RawgService, private _compiler: Compiler) {
   }
 
   ngOnInit(): void {
-    this.getCompressUrl();
-  }
-
-  getCompressUrl() {
-    this.rawgService.CompressImg(this.game.background_image, 15).then((data: any) => {
-      this.compressUrl = data.dest;
-    })
   }
 
   ngOnDestroy(): void {
