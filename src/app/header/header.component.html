@@ -1,0 +1,53 @@
+<header class="header">
+  <div class="menu_container">
+    <p class="logo"><span>O</span>ne<span>M</span>ore<span>G</span>ame</p>
+    <p class="logo_short" (click)="GoToStart()">OMG</p>
+  </div>
+  <div class="search_container" (mouseleave)="searchResults=[]">
+    <input class="search_field" #search placeholder="Search" (keypress)="CheckValid($event)"
+           [ngStyle]="(search.value==''|| searchResults.length==0) && !dotsShow ? {'border-radius' : '15px'}:{}"
+           (keyup)="search.value!='' ? Search(search.value) :searchResults=[]">
+    <div class="search_result_container">
+      <div class="search_result">
+        <p *ngFor="let result of this.searchResults;let indx =index"
+           [ngStyle]="{'animation-delay': indx *0.2 + 's'}" (click)="GoToGame(result.id)">{{result.name}}</p>
+        <div class="placeholder" *ngIf="dotsShow">
+          <svg height="40" width="40" class="loader">
+            <circle class="dot" cx="10" cy="20" r="3" style="fill:grey;"/>
+            <circle class="dot" cx="20" cy="20" r="3" style="fill:grey;"/>
+            <circle class="dot" cx="30" cy="20" r="3" style="fill:grey;"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="svg_container darkmode_container" (click)="SetDarkMode()">
+    <button class="svg darkmode">
+      <svg *ngIf="!dark; else sun" viewBox="0 0 32 32" fill="none" preserveAspectRatio="xMidYMid meet">
+        <path
+          d="M31 19.8174C28.3914 20.5489 25.635 20.5729 23.0141 19.8868C20.3931 19.2008 18.002 17.8295 16.0862 15.9138C14.1705 13.998 12.7992 11.6069 12.1132 8.98594C11.4271 6.36497 11.4511 3.60864 12.1826 1C9.61074 1.71584 7.2713 3.09303 5.39731 4.99439C3.52332 6.89574 2.18019 9.25491 1.50171 11.8369C0.823222 14.4189 0.833062 17.1336 1.53024 19.7106C2.22743 22.2876 3.58762 24.6369 5.47534 26.5247C7.36307 28.4124 9.71243 29.7726 12.2894 30.4698C14.8664 31.1669 17.5811 31.1768 20.1631 30.4983C22.7451 29.8198 25.1043 28.4767 27.0056 26.6027C28.907 24.7287 30.2842 22.3893 31 19.8174V19.8174Z"
+          stroke="#191308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <ng-template #sun>
+        <svg viewBox="0 0 32 32" fill="none">
+          <path
+            d="M16 24C20.1421 24 23.5 20.6421 23.5 16.5C23.5 12.3579 20.1421 9 16 9C11.8579 9 8.5 12.3579 8.5 16.5C8.5 20.6421 11.8579 24 16 24Z"
+            stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 5V4" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.86248 8.36248L7.16248 7.66248" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+          <path d="M4.5 16.5H3.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.86248 24.6375L7.16248 25.3375" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+          <path d="M16 28V29" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24.1375 24.6375L24.8375 25.3375" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+          <path d="M27.5 16.5H28.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24.1375 8.36248L24.8375 7.66248" stroke="black" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+      </ng-template>
+
+    </button>
+  </div>
+</header>

@@ -1,0 +1,192 @@
+@import "src/styles.scss";
+
+:host {
+  flex: 1;
+}
+
+.scroll_button {
+  margin-right: 5vw;
+  margin-bottom: 3vh;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  transition: transform 1s ease;
+
+  &:hover {
+    transform: scale(1.05) !important;
+    transition: transform 1s ease;
+  }
+}
+
+.svg_container {
+  border-radius: 1.25rem;
+  width: 2.625rem;
+  height: 2.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .svg {
+    padding: 0;
+    border-style: none;
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: calc(2.5rem + 66px);
+
+  .text_content {
+    margin: 0 5vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    .page_desc {
+      h1 {
+        @include PRIMARY;
+      }
+
+      .topic_desc {
+        @include SECONDARY;
+        margin: 0 0;
+      }
+    }
+
+    .order {
+      cursor: pointer;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      padding: .75rem;
+      border-radius: 1.25rem;
+      display: flex;
+      align-items: baseline;
+      @include TEXT;
+      gap: .75rem;
+      transition: transform 1s ease;
+
+      span {
+        font-weight: bold;
+      }
+
+      select {
+        border: none;
+        background-color: transparent;
+
+        option {
+          @include TEXT;
+        }
+
+        &:focus-visible {
+          outline: none;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        transition: transform 1s ease;
+      }
+    }
+  }
+
+  .content_wrap {
+    border-radius: 1.5rem 1.5rem 0 0;
+    flex: 1;
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+
+    .content {
+      flex: 1;
+      margin: 2.5rem 5rem 0 5rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      transition: height 2s;
+
+      .items {
+        display: flex;
+        justify-content: space-around;
+        gap: 2rem;
+        flex-wrap: wrap;
+
+        p {
+          opacity: 0;
+          animation: showitem 1s forwards;
+        }
+
+        .blackout {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: rgba(15, 14, 23, 0.5);
+          visibility: hidden;
+          transition: visibility .8s ease-in;
+          z-index: 1;
+        }
+
+        app-game-card {
+          cursor: pointer;
+          backface-visibility: hidden;
+          -webkit-filter: blur(0);
+          transition: transform 1s ease-in-out;
+          filter: drop-shadow(0px 7px 29px rgba(25, 19, 8, 0.3));
+        }
+      }
+
+      sa-spinner-circular {
+        padding: 2rem;
+        align-self: center;
+        opacity: 0;
+        animation: show 3s forwards;
+      }
+    }
+  }
+}
+
+@keyframes show {
+  from {
+
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+
+  }
+}
+
+@keyframes showitem {
+  from {
+    transform: translateY(5rem);
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+    transform: translateY(0);
+  }
+}
+
+.show_preview {
+  cursor: unset !important;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  z-index: 2;
+  transform: scale(1.1);
+  transition: transform 0.8s linear;
+
+  ~ .blackout {
+    visibility: visible !important;
+  }
+}
+
+
+

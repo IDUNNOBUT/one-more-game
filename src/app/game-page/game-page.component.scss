@@ -1,0 +1,239 @@
+@import "src/styles.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.scroll_button {
+  margin-right: 5vw;
+  margin-bottom: 3vh;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  transition: transform 1s ease;
+
+  &:hover {
+    transform: scale(1.05) !important;
+    transition: transform 1s ease;
+  }
+}
+
+.svg_container {
+  border-radius: 1.25rem;
+  width: 2.625rem;
+  height: 2.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .svg {
+    padding: 0;
+    border-style: none;
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.wrapper {
+  position: relative;
+  flex: 1;
+  padding-top: 66px;
+  overflow: hidden;
+
+  .background_blackout {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: linear-gradient(0deg, rgba(76, 80, 80, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .background {
+    overflow: hidden;
+    opacity: 0.7;
+    z-index: -2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .top_block {
+    backdrop-filter: blur(.3rem);
+    padding: 2rem 2rem;
+    border-radius: 1.25rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2.5rem 5vw;
+    @media screen and (max-width: 900px) {
+      flex-wrap: wrap;
+    }
+
+    .game-intro {
+      flex: 50%;
+
+      h1 {
+        margin: 0;
+        @include PRIMARY;
+      }
+
+      h2 {
+        margin: 0;
+        @include SECONDARY;
+      }
+
+      p {
+        margin: 0;
+        @include TEXT;
+      }
+
+      .description {
+        @include TEXT;
+      }
+
+      a {
+        @include TEXT;
+        text-decoration: none;
+      }
+    }
+
+    .trailer {
+      flex: 50%;
+      position: relative;
+      width: 40rem;
+      aspect-ratio: 16/9;
+
+      iframe {
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    animation: top 1s ease-in forwards;
+  }
+
+  .main {
+    margin: 2.5rem 5vw;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .score {
+      @include SECONDARY;
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+
+      p {
+        margin: 0;
+      }
+
+      .metacritic {
+        @include PRIMARY;
+        width: 3rem;
+        height: 3rem;
+        text-align: center;
+        flex: 0;
+        border-radius: .4rem;
+        padding: .5rem;
+        background-color: #66CC33;
+      }
+
+      .playtime {
+        margin: 0;
+        @include PRIMARY;
+      }
+
+      .user_score {
+        margin: 0;
+        @include PRIMARY;
+        width: fit-content;
+        text-align: center;
+        flex: 0;
+        border-radius: .4rem;
+        padding: .5rem;
+      }
+    }
+
+    .platforms {
+      .platform {
+        @include TEXT;
+      }
+    }
+
+    .ahievments {
+      .ahievment {
+        margin: 1rem 0;
+        @include TEXT;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 1.25rem;
+
+        img {
+          border-radius: 0.5rem;
+          width: 3rem;
+        }
+
+        animation: ahievment 1s ease-in;
+      }
+    }
+  }
+}
+
+.desc {
+  @include PRIMARY;
+}
+
+footer {
+  padding: 1rem;
+  @include SECONDARY;
+  text-align: center;
+}
+
+@keyframes top {
+  from {
+    transform: translateY(-50rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ahievment {
+  from {
+    transform: translateX(50rem);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="content">
+    <div class="top_desc">
+      <p>{{game.name}}</p>
+      <p *ngIf="game.metacritic" class="metacritic">{{game.metacritic}}</p>
+    </div>
+    <div class="bottom_desc">
+      <p>{{game.released}}</p>
+      <button class="show_more" routerLink="game/{{game.id}}" routerLinkActive="active">
+        Show more
+      </button>
+      <div class="platforms">
+        <p *ngFor="let platforms of game.platforms.slice(0,2)">{{platforms.platform.name}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="preview">
+    <div *ngIf="isLoading" class="placeholder"></div>
+    <img width="300px" #img (load)="Loading(img)" src="{{compressUrl}}" (error)="isLoading=true" alt="">
+  </div>
+</div>
+

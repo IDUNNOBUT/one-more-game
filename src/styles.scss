@@ -1,1 +1,241 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Catamaran&family=Rajdhani:wght@700&family=Yanone+Kaffeesatz&display=swap');
+
+$black-chocolate: #191308;
+$alabaster: #e8ebe4;
+$independence: #454b66;
+$red-purple: #DC0073;
+$polished-pine: #539987;
+
+
+$xiketic: #0f0e17ff;
+$dark-orange: #69747C;
+$fire-opal: #f25f4cff;
+$white: #EEEEEE;
+$cadet-blue-crayola: #4f626c;
+
+@mixin TEXT {
+  font-family: 'Catamaran', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 26px;
+}
+
+@mixin PRIMARY {
+  font-family: 'Rajdhani', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+@mixin SECONDARY {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2.25rem;
+  line-height: 1.3;
+}
+
+@mixin theme($text,$primary_one,$primary_two, $secondary,$accent) {
+  color: $text;
+  app-header {
+    svg {
+      path {
+        stroke: $text;
+      }
+    }
+
+    .header {
+      background-color: $primary_one;
+    }
+
+    .logo {
+      span {
+        color: $accent;
+      }
+
+      &:after {
+        color: $accent;
+      }
+    }
+
+    input {
+      &::placeholder {
+        color: $black-chocolate;
+      }
+    }
+
+    p, input {
+      color: $text;
+    }
+
+    .logo_short {
+      color: $accent;
+    }
+
+    .search_result {
+      p:hover {
+        background-color: $accent;
+      }
+    }
+  }
+  app-infinite-scroll {
+    background: radial-gradient(circle farthest-corner at 92.3% 71.5%, $secondary 0%, $primary_two 90%);
+    background-attachment: fixed;
+
+    .scroll_button {
+      background-color: $accent;
+    }
+
+    .page_desc {
+      h1 {
+        color: $text;
+
+        span {
+          color: $accent;
+        }
+      }
+
+      .topic_desc {
+        color: $primary_one;
+      }
+    }
+
+    .order {
+      background-color: $text;
+
+      span {
+        color: $primary_one;
+      }
+
+      select {
+        color: $secondary;
+
+        option {
+          background: $text;
+        }
+      }
+    }
+
+    .content_wrap {
+      background-color: $primary_one;
+
+      .content {
+
+        sa-spinner-circular {
+          svg {
+            circle:last-child {
+              stroke: $accent;
+            }
+          }
+        }
+      }
+    }
+  }
+  app-game-card {
+    .card {
+      .content {
+        .top_desc {
+          background-color: rgba($primary_one, 0.8);
+        }
+
+        .bottom_desc {
+          background-color: rgba($primary_one, 0.8);
+
+          .show_more:hover {
+            background-color: $accent;
+          }
+        }
+      }
+    }
+  }
+  app-game-page {
+    .scroll_button {
+      background-color: $accent;
+    }
+
+    .wrapper {
+      .top_block {
+        background-color: rgba($primary_one, 0.7);
+
+        a {
+          color: $accent;
+        }
+      }
+
+      .main {
+        .ahievments {
+          .ahievment {
+            background-color: $secondary;
+          }
+        }
+      }
+    }
+
+    footer {
+      background-color: $primary_one;
+    }
+  }
+}
+
+
+html, body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  width: 100%;
+  min-height: 100vh;
+  font-size: calc(14px + 2 * (100vw / 1920));
+  line-height: 1.4;
+}
+
+body.light-mode {
+  background-color: white;
+  $text: $black-chocolate;
+  $primary_one: $alabaster;
+  $primary_two: $independence;
+  $secondary: $polished-pine;
+  $accent: $red-purple;
+  @include theme($text, $primary_one, $primary_two, $secondary, $accent);
+
+  .search_field {
+    background-color: white;
+  }
+
+  .search_result_container {
+    background-color: white;
+  }
+}
+
+body.dark-mode {
+  background-color: $cadet-blue-crayola;
+  $text: $white;
+  $primary_one: $xiketic;
+  $primary_two: $cadet-blue-crayola;
+  $secondary: $dark-orange;
+  $accent: $fire-opal;
+
+  app-header {
+    .darkmode {
+      svg {
+        fill: $fire-opal;
+      }
+    }
+  }
+
+  @include theme($text, $primary_one, $primary_two, $secondary, $accent);
+
+  .search_field {
+    background-color: #424242;
+  }
+
+  .search_result_container {
+    background-color: #424242;
+  }
+}
+
+body:not(.dark-mode-preloading) {
+  transition: all 0.5s linear;
+}
+

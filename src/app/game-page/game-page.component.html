@@ -1,0 +1,48 @@
+<div @removeScrollButton *ngIf="scrolled" class="scroll_button svg_container" (click)="scrollTop()">
+  <button class="svg">
+    <svg viewBox="0 0 32 33" fill="none" preserveAspectRatio="xMidYMid meet">
+      <path d="M6 26.5L16 16.5L26 26.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6 16.5L16 6.5L26 16.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+<app-header></app-header>
+<div class="wrapper">
+  <div class="background_blackout"></div>
+  <img class="background" src="{{gameDesc.background_image}}">
+  <div *ngIf="gameDesc.name" class="top_block">
+    <div class="game-intro">
+      <p>Released: {{gameDesc.released}}</p>
+      <h1>{{gameDesc.name}}</h1>
+      <h2>About</h2>
+      <div class="description" [innerHtml]=gameDesc.description></div>
+      <a *ngIf="gameDesc.website" [href]=gameDesc.website target="_blank">See website</a>
+    </div>
+    <div *ngIf="trailer!==''" class="trailer">
+      <iframe [src]='videoUrl' title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="main">
+    <div class="score">
+      <p *ngIf="gameDesc.metacritic || gameDesc.rating ||gameDesc.playtime" class="desc">Summary:</p>
+      <p *ngIf="gameDesc.metacritic">Metascore: <span class="metacritic">{{gameDesc.metacritic}}</span></p>
+      <p *ngIf="gameDesc.rating">User score: <span class="user_score">{{gameDesc.rating}}</span></p>
+      <p *ngIf="gameDesc.playtime">Playtime: <span class="playtime">{{gameDesc.playtime}}</span></p>
+    </div>
+    <div *ngIf="gameDesc.platforms.length!==0" class="platforms">
+      <p class="desc">Available at:</p>
+      <p class="platform" *ngFor="let platform of gameDesc.platforms">{{platform.platform.name}}</p>
+    </div>
+    <div *ngIf="ahievments.length!==0" class="ahievments">
+      <p class="desc">Ahievments list:</p>
+      <div class="ahievment" *ngFor="let ahievment of ahievments">
+        <p>{{ahievment.name}}</p>
+        <p>{{ahievment.description}}</p>
+        <img [src]="ahievment.image">
+      </div>
+    </div>
+  </div>
+</div>
+<footer>Created by Idunno, 2022</footer>

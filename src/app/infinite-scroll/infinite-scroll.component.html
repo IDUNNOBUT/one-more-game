@@ -1,0 +1,43 @@
+<div @removeScrollButton *ngIf="scrolled" class="scroll_button svg_container" (click)="scrollTop()">
+  <button class="svg">
+    <svg viewBox="0 0 32 33" fill="none" preserveAspectRatio="xMidYMid meet">
+      <path d="M6 26.5L16 16.5L26 26.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6 16.5L16 6.5L26 16.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+<div class="wrapper">
+  <div class="text_content">
+    <div class="page_desc">
+      <h1>
+        Explore<br>
+        new <span>realities</span>
+      </h1>
+      <p class="topic_desc">Based on RAWG - 500,000+ video games data base</p>
+    </div>
+    <div class="order">
+      <span>Order by:</span>
+      <select [(ngModel)]="orderBy" (change)="initList()">
+        <option>metacritic</option>
+        <option>name</option>
+        <option>released</option>
+        <option>added</option>
+        <option>created</option>
+        <option>updated</option>
+        <option>rating</option>
+      </select>
+    </div>
+  </div>
+  <div class="content_wrap">
+    <div class="content" infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="150" (scrolled)="onScrollDown()">
+      <div class="items">
+        <app-game-card (click)="showPreview($event)" *ngFor="let item of this.InfiniteItems"
+                       [game]=item></app-game-card>
+        <div (click)="HidePreview()" class="blackout"></div>
+      </div>
+      <sa-spinner-circular [enabled]=this.load></sa-spinner-circular>
+    </div>
+  </div>
+</div>

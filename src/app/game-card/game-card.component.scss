@@ -1,0 +1,152 @@
+@import "src/styles.scss";
+
+:host(.show_preview) {
+  .card {
+    .content {
+      .top_desc {
+        transform: translateY(0);
+        transition: transform 1s ease-in-out;
+      }
+
+      .bottom_desc {
+        transform: translateY(0);
+        transition: transform 1s ease-in-out;
+      }
+    }
+  }
+}
+
+.card {
+  border-radius: 1.25rem;
+  position: relative;
+  height: 25rem;
+  width: 25rem;
+  overflow: hidden;
+
+  .content {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+
+    .top_desc {
+      transform: translateY(-20rem);
+      transition: transform 1s ease-in-out;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @include SECONDARY;
+
+      p {
+        margin: 0;
+      }
+
+      .metacritic {
+        @include PRIMARY;
+        width: 3rem;
+        height: 3rem;
+        text-align: center;
+        flex: 0;
+        border-radius: .4rem;
+        padding: .5rem;
+        background-color: #66CC33;
+      }
+    }
+
+    .bottom_desc {
+      transform: translateY(20rem);
+      transition: transform 1s ease-in-out;
+      padding: 1rem 2rem;
+      @include TEXT;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .show_more {
+        justify-self: center;
+        cursor: pointer;
+        padding: 1rem 1rem;
+        border-style: none;
+        border-radius: 1.25rem;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .platforms {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    position: relative;
+    z-index: 1;
+  }
+
+  .preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    img {
+      min-height: 100%;
+      min-width: 100%;
+      object-fit: cover;
+    }
+
+    .placeholder {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(143, 143, 143, 1) 0%, rgba(212, 212, 212, 1) 50%, rgba(143, 143, 143, 1) 100%);
+      background-size: 200% 200%;
+      animation: gradient-animation 5s ease-in-out infinite;
+      @keyframes gradient-animation {
+        0% {
+          background-position: 0 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0 50%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .card {
+    height: 20rem;
+    width: 20rem;
+
+    .content {
+      .top_desc {
+        padding: 1rem;
+        font-size: 1.5rem;
+
+        .metacritic {
+          font-size: 1.5rem;
+          height: fit-content;
+        }
+      }
+
+      .bottom_desc {
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .card {
+    height: 15rem;
+    width: 15rem;
+  }
+}
